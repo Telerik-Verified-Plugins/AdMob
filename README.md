@@ -1,123 +1,79 @@
-# cordova-plugin-admob #
+## Cordova Plugin for AdMob, Open Source Project
 
-AdMob Cordova Plugin, provides a way to request AdMob ads natively from JavaScript. 
+The FASTEST and EASIEST TO USE Cordova Admob plugin for Android, iOS and Windows phone.
 
-## Platform SDK supported ##
+Simple and easy plugin to monetize your HTML5 hybrid apps and games.
 
-* Android, using Google Play Service for Android, r19
-* iOS, using AdMob SDK for iOS, v6.12.2
-* Windows Phone, using AdMob SDK for Windows Phone 8, v6.5.13
+Usage:
+- Create your app
 
-## How to use? ##
-To install this plugin, follow the [Command-line Interface Guide](http://cordova.apache.org/docs/en/edge/guide_cli_index.md.html#The%20Command-line%20Interface).
-
-    cordova plugin add com.rjfun.cordova.plugin.admob
-
-Note: ensure you have a proper AdMob account and create an Id for your app.
-
-## Javascript API ##
-
-APIs:
-```javascript
-setOptions(options, success, fail);
-
-createBannerView(options, success, fail);
-requestAd(options, success, fail);  // optional, will be absolete
-showAd(true/false, success, fail); 
-destroyBannerView();
-
-createInterstitialView(options, success, fail);
-requestInterstitialAd(options, success, fail); // optional, will be absolete
-showInterstitialAd();
+```bash
+cordova create hallo com.example.hello HelloWorld
+cd hallo
+cordova platform add android
 ```
 
-## Example code ##
+- Add the plugin
+```bash
+cordova plugin add cordova-plugin-admob
+```
 
-Check the [test/index.html] (https://github.com/floatinghotpot/cordova-plugin-admob/blob/master/test/index.html).
+OR
+```bash
+cordova plugin add https://github.com/floatinghotpot/cordova-plugin-admob
+```
 
-See the working example code in [demo under test folder](test/index.html), and here are some screenshots.
- 
-## Screenshots (banner Ad / interstitial Ad) ##
+Example Code:
+```javascript
+        window.plugins.AdMob.setOptions( {
+          publisherId: admobid.banner,
+          interstitialAdId: admobid.interstitial,
+          bannerAtTop: false, // set to true, to put banner at top
+          overlap: false, // set to true, to allow banner overlap webview
+          offsetTopBar: false, // set to true to avoid ios7 status bar overlap
+          isTesting: false, // receiving test ad
+          autoShow: true // auto show interstitial ad when loaded
+        });
+        // display the banner at startup
+        window.plugins.AdMob.createBannerView();
+        
+        // create interstitial ad
+        window.plugins.AdMob.createInterstitialView();
+        window.plugins.AdMob.showInterstitialAd(
+          true, 
+          function(){},
+          function(e){alert(JSON.stringify(e));}
+        );
+```
 
-iPhone:
+See full index.html: https://github.com/floatinghotpot/cordova-plugin-admob/blob/master/test/index.html
 
-![ScreenShot](demo/admob-iphone.jpg)
+Note: This plugin is quite stable, and will not be evolved any more, except upgrade AdMob SDK.
 
-## Credits ##
+## AdMob Basic vs Pro
 
-This plugin is mainly maintained by Raymond Xie, and also thanks to following contributors:
+If you want to use more powerful and new features, please use the pro version instead. The totoally re-designed **[AdMob PluginPro](https://github.com/floatinghotpot/cordova-admob-pro)** is proved much better and more than welcome by Cordova APP/game developers. 
+
+As announced by Cordova team, the plugins registry is being migrated to npm, you can find [all plugins by Raymond here](https://www.npmjs.com/~floatinghotpot).
+
+![ScreenShot](https://github.com/floatinghotpot/cordova-plugin-admob/raw/master/docs/pro_vs_basic.png)
+
+## Credits
+
+This plugin was mainly maintained by Raymond Xie, and also thanks to following contributors:
 
 * @jumin-zhu, added interstitial support for Android.
 * @fersingb, added interstitial support for iOS.
-* @AlexB71, improved WP8 support.
 * @ihshim523, added initial WP8 support.
+* @AlexB71, improved WP8 support.
 * And, bugfix patches from @chrisschaub, @jmelvin, @mbektchiev, @grahamkennery, @bastaware, @EddyVerbruggen, @codebykevin, @codebykevin, @zahhak.
 
-You can use this plugin for FREE. To support the project, donation is welcome.
+This project is fully open source, and no ad traffic sharing any more.
 
-* Donate via PayPal to rjfun.mobile@gmail.com
-* Keep the 2% Ad traffic sharing code.
+## More
 
-Forking and improving is welcome. Please ADD VALUE, instead of changing the name only.
+More free projects by Raymond Xie, find them on npm: 
+https://www.npmjs.com/~floatinghotpot
 
-## AdMob PluginPro ##
 
-Totally re-designed **[AdMob PluginPro](https://github.com/floatinghotpot/cordova-admob-pro)** is more recommended.
-
-Highlights:
-- [x] Easy-to-use: Display Ad with single line of javascript code.
-- [x] Powerful: Support banner, interstitial, and video Ad.
-- [x] Max revenue: Support mediation with up to 8 leading mobile Ad services.
-- [x] Multi-size: Multiple banner size, also support custom size.
-- [x] Flexible: Fixed and overlapped mode, put banner at any position with overlap mode.
-- [x] Smart: Auto fit on orientation change.
-- [x] Same API: Exactly same API with other Ad plugins, easy to switch from one Ad service to another.
-- [x] Up to date: Latest SDK and Android Google play services.
-- [x] Good support: Actively maintained, prompt response.
-
-Platforms supported:
-- [x] Android
-- [x] iOS
-- [x] Windows Phone
-
-Tested with:
-* [x] Apache Cordova CLI, v3.0+
-* [x] Intel XDK, r1095+
-* [x] IBM Worklight, v6.2+
-* [x] Google Mobile Chrome App, v0.5.0+
-* [x] Adobe PhoneGap Build, since 2014.12.9
-
-Mediation with:
-* [x] AdMob
-* [x] DFP (DoubleClick for Publisher)
-* [x] Facebook Audience Network
-* [x] Flurry
-* [x] iAd
-* [x] InMobi
-* [x] Millennial Media
-* [x] MobFox
-
-News:
-- Recommended by Telerik in Verified Plugins Marketplace. [read more ...](http://plugins.telerik.com/plugin/admob)
-- Recommended by William SerGio in code project (20 Jun 2014), [read more ...](http://www.codeproject.com/Articles/788304/AdMob-Plugin-for-Latest-Version-of-PhoneGap-Cordov)
-- Recommended by Arne in Scirra Game Dev Forum (07 Aug, 2014), [read more ...](https://www.scirra.com/forum/plugin-admob-ads-for-crosswalk_t111940)
-- Recommended by Intel XDK team (08/22/2014), [read more ...](https://software.intel.com/en-us/html5/articles/adding-google-play-services-to-your-cordova-application)
-
-## See Also ##
-
-Ad PluginPro series for the world leading Mobile Ad services:
-
-* [GoogleAds PluginPro](https://github.com/floatinghotpot/cordova-admob-pro), for Google AdMob/DoubleClick.
-* [iAd PluginPro](https://github.com/floatinghotpot/cordova-iad-pro), for Apple iAd. 
-* [FacebookAds PluginPro](https://github.com/floatinghotpot/cordova-plugin-facebookads), for Facebook Audience Network.
-* [FlurryAds PluginPro](https://github.com/floatinghotpot/cordova-plugin-flurry), for Flurry Ads.
-* [mMedia PluginPro](https://github.com/floatinghotpot/cordova-plugin-mmedia), for Millennial Meida.
-* [MobFox PluginPro](https://github.com/floatinghotpot/cordova-mobfox-pro), for MobFox.
-* [MoPub PluginPro](https://github.com/floatinghotpot/cordova-plugin-mopub), for MoPub.
-
-All Ad plugins implemented with exactly same API, so very easy to switch from one Ad service to another. 
-
-More Cordova/PhoneGap plugins by Raymond Xie, [find them in plugin registry](http://plugins.cordova.io/#/search?search=rjfun).
-
-Customization, project outsourcing and consulting service is also available. Please [contact us](mailto:rjfun.mobile@gmail.com) if you have the business needs.
 
